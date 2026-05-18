@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rushma Dahal — Web Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#0A0C10;
+  --bg2:#0F1117;
+  --bg3:#141720;
+  --surface:#181C26;
+  --surface2:#1E2330;
+  --border:#252A38;
+  --border2:#2E3448;
+  --text:#E8EAF0;
+  --text2:#9BA3B8;
+  --text3:#5C647A;
+  --green:#00D084;
+  --green-dim:rgba(0,208,132,0.1);
+  --green-border:rgba(0,208,132,0.25);
+  --blue:#4A9EFF;
+  --blue-dim:rgba(74,158,255,0.1);
+  --purple:#9B7FFF;
+  --amber:#F5A623;
+  --whatsapp:#25D366;
+  --r:10px;
+  --rl:16px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+::selection{background:var(--green-dim);color:var(--green);}
+
+.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,black 20%,transparent 100%);}
+.orb{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;}
+.orb1{width:600px;height:600px;background:rgba(0,208,132,0.055);top:-200px;right:-100px;}
+.orb2{width:500px;height:500px;background:rgba(74,158,255,0.045);bottom:100px;left:-200px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 4rem;height:64px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,12,16,0.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background 0.3s;}
+.nav-brand{display:flex;align-items:center;gap:0.7rem;text-decoration:none;}
+.nav-dot{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green);animation:glow 2s ease-in-out infinite;}
+@keyframes glow{0%,100%{box-shadow:0 0 6px var(--green);}50%{box-shadow:0 0 16px var(--green);}}
+.nav-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.95rem;color:var(--text);}
+.nav-badge{font-family:'Fira Code',monospace;font-size:0.68rem;color:var(--green);padding:0.2rem 0.55rem;background:var(--green-dim);border:1px solid var(--green-border);border-radius:4px;}
+.nav-links{display:flex;gap:0;list-style:none;}
+.nav-links a{font-size:0.8rem;color:var(--text2);text-decoration:none;padding:0.4rem 0.9rem;border-radius:6px;transition:all 0.2s;}
+.nav-links a:hover{color:var(--text);background:var(--surface);}
+.nav-cta{padding:0.5rem 1.2rem;background:var(--green);color:#0A0C10;font-size:0.8rem;font-weight:600;border-radius:6px;text-decoration:none;transition:all 0.2s;}
+.nav-cta:hover{background:#00EE9A;transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,208,132,0.35);}
+
+/* HERO */
+#hero{min-height:100vh;padding:100px 4rem 5rem;display:grid;grid-template-columns:1fr 430px;align-items:center;gap:3rem;max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;padding:0.4rem 1rem;background:var(--green-dim);border:1px solid var(--green-border);border-radius:100px;font-family:'Fira Code',monospace;font-size:0.7rem;color:var(--green);margin-bottom:1.5rem;}
+.hero-badge-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.25;}}
+h1.hero-name{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.8rem,5vw,4.8rem);font-weight:700;line-height:1.02;letter-spacing:-0.03em;margin-bottom:0.6rem;}
+.line1{color:var(--text);}
+.line2{background:linear-gradient(135deg,var(--green) 0%,var(--blue) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-role{font-family:'Fira Code',monospace;font-size:0.9rem;color:var(--text2);margin-bottom:1.5rem;line-height:1.8;}
+.kw{color:var(--blue);}
+.str{color:var(--green);}
+.cm{color:var(--text3);}
+.br{color:var(--text3);}
+.hero-desc{font-size:0.95rem;color:var(--text2);line-height:1.8;max-width:500px;margin-bottom:2.5rem;font-weight:300;}
+.hero-btns{display:flex;gap:0.8rem;flex-wrap:wrap;}
+
+.btn-primary{display:inline-flex;align-items:center;gap:0.55rem;padding:0.72rem 1.5rem;background:var(--green);color:#0A0C10;font-size:0.85rem;font-weight:600;border-radius:var(--r);text-decoration:none;transition:all 0.25s;border:none;cursor:pointer;}
+.btn-primary:hover{background:#00EE9A;transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,208,132,0.35);}
+.btn-wa{display:inline-flex;align-items:center;gap:0.55rem;padding:0.72rem 1.5rem;background:rgba(37,211,102,0.1);color:var(--whatsapp);font-size:0.85rem;font-weight:500;border-radius:var(--r);text-decoration:none;border:1px solid rgba(37,211,102,0.28);transition:all 0.25s;}
+.btn-wa:hover{background:rgba(37,211,102,0.18);transform:translateY(-2px);box-shadow:0 10px 28px rgba(37,211,102,0.2);}
+.btn-outline{display:inline-flex;align-items:center;gap:0.55rem;padding:0.72rem 1.5rem;background:transparent;color:var(--text);font-size:0.85rem;font-weight:400;border-radius:var(--r);text-decoration:none;border:1px solid var(--border2);transition:all 0.25s;}
+.btn-outline:hover{border-color:var(--green);color:var(--green);transform:translateY(-2px);}
+.btn-primary svg,.btn-wa svg,.btn-outline svg{width:15px;height:15px;flex-shrink:0;}
+
+/* TERMINAL */
+.term-wrap{perspective:1000px;}
+.term-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;transform:perspective(1000px) rotateY(-10deg) rotateX(5deg);transition:transform 0.6s cubic-bezier(0.23,1,0.32,1);box-shadow:0 50px 100px rgba(0,0,0,0.55),inset 0 1px 0 rgba(255,255,255,0.04);}
+.term-card:hover{transform:perspective(1000px) rotateY(0) rotateX(0) scale(1.015);box-shadow:0 60px 120px rgba(0,0,0,0.6),0 0 60px rgba(0,208,132,0.06);}
+.term-top{padding:0.8rem 1rem;background:var(--surface2);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.5rem;}
+.td{width:12px;height:12px;border-radius:50%;}
+.tr{background:#FF5F57;}.ty{background:#FEBC2E;}.tg{background:#28C840;}
+.tn{font-family:'Fira Code',monospace;font-size:0.7rem;color:var(--text3);margin-left:auto;}
+.term-body{padding:1.5rem 1.6rem;font-family:'Fira Code',monospace;font-size:0.8rem;line-height:2;}
+.tl{display:flex;gap:0.7rem;}
+.tp{color:var(--green);user-select:none;}
+.tk{color:var(--blue);}
+.tv{color:var(--amber);}
+.tv.s{color:var(--green);}
+.tv.n{color:var(--purple);}
+.ti{padding-left:1.1rem;}
+.tcur{display:inline-block;width:7px;height:14px;background:var(--green);vertical-align:middle;animation:blink 1.1s steps(1) infinite;margin-left:2px;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+/* STATS */
+.stats-bar{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;z-index:1;}
+.stats-inner{max-width:1200px;margin:0 auto;padding:2.2rem 4rem;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;}
+.si{text-align:center;}
+.sn{font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:700;color:var(--green);line-height:1;margin-bottom:0.3rem;}
+.sd{font-size:0.75rem;color:var(--text3);}
+
+/* SECTION */
+section{position:relative;z-index:1;}
+.sw{max-width:1200px;margin:0 auto;padding:5rem 4rem;}
+.ey{font-family:'Fira Code',monospace;font-size:0.72rem;color:var(--green);display:flex;align-items:center;gap:0.5rem;margin-bottom:0.7rem;}
+.ey::before{content:'//';color:var(--text3);}
+.st{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;line-height:1.1;letter-spacing:-0.025em;margin-bottom:2.8rem;}
+.st span{color:var(--green);}
+
+/* ABOUT */
+#about{background:var(--bg2);}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.at p{color:var(--text2);font-size:0.92rem;line-height:1.85;margin-bottom:1rem;font-weight:300;}
+.ll{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);margin:1.5rem 0 0.6rem;}
+.lc{display:flex;gap:0.5rem;flex-wrap:wrap;}
+.lp{padding:0.35rem 0.85rem;background:var(--surface);border:1px solid var(--border2);border-radius:6px;font-size:0.78rem;color:var(--text2);}
+.mini-contacts{display:flex;flex-direction:column;gap:0.7rem;margin-top:3.8rem;}
+.mc{display:flex;align-items:center;gap:0.75rem;padding:0.75rem 1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);text-decoration:none;color:var(--text2);font-size:0.85rem;transition:all 0.22s;}
+.mc:hover{transform:translateX(4px);}
+.mc.em:hover{border-color:rgba(74,158,255,0.4);color:var(--blue);}
+.mc.wa:hover{border-color:rgba(37,211,102,0.4);color:var(--whatsapp);}
+.mc.ph:hover{border-color:rgba(245,166,35,0.4);color:var(--amber);}
+.mc svg{width:15px;height:15px;flex-shrink:0;}
+.mc.em svg{color:var(--blue);}
+.mc.wa svg{color:var(--whatsapp);}
+.mc.ph svg{color:var(--amber);}
+.mc-txt{font-size:0.8rem;}
+
+/* SKILLS */
+#skills{background:var(--bg);}
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;}
+.sk{background:var(--bg2);padding:1.7rem;transition:all 0.28s;cursor:default;position:relative;overflow:hidden;}
+.sk::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),var(--blue));transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+.sk:hover{background:var(--surface);transform:perspective(500px) rotateX(-4deg) translateY(-4px);}
+.sk:hover::before{transform:scaleX(1);}
+.ski{width:38px;height:38px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:0.9rem;}
+.skn{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:0.92rem;margin-bottom:0.2rem;}
+.skc{font-size:0.72rem;color:var(--text3);margin-bottom:0.9rem;}
+.skb{height:2px;background:var(--border);border-radius:1px;overflow:hidden;}
+.skf{height:100%;background:linear-gradient(90deg,var(--green),var(--blue));border-radius:1px;width:0;transition:width 1.3s cubic-bezier(0.23,1,0.32,1);}
+.skp{font-family:'Fira Code',monospace;font-size:0.68rem;color:var(--text3);margin-top:0.35rem;text-align:right;}
+.comp{margin-top:3rem;padding-top:3rem;border-top:1px solid var(--border);}
+.compt{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-bottom:0.9rem;}
+.comps{display:flex;flex-wrap:wrap;gap:0.6rem;}
+.compp{padding:0.42rem 0.95rem;background:var(--surface);border:1px solid var(--border2);border-radius:6px;font-size:0.8rem;color:var(--text2);transition:all 0.2s;cursor:default;}
+.compp:hover{border-color:var(--green);color:var(--green);background:var(--green-dim);}
+
+/* EXPERIENCE */
+#experience{background:var(--bg2);}
+.xtl{position:relative;padding-left:2rem;}
+.xtl::before{content:'';position:absolute;left:0;top:10px;bottom:0;width:1px;background:var(--border2);}
+.xb{position:relative;margin-bottom:2rem;}
+.xb::before{content:'';position:absolute;left:-2.45rem;top:7px;width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 14px rgba(0,208,132,0.5);border:2px solid var(--bg2);}
+.xm{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.4rem;flex-wrap:wrap;gap:0.5rem;}
+.xr{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;}
+.xbg{font-family:'Fira Code',monospace;font-size:0.68rem;padding:0.28rem 0.75rem;background:var(--green-dim);border:1px solid var(--green-border);color:var(--green);border-radius:100px;}
+.xo{font-size:0.82rem;color:var(--text3);margin-bottom:1.1rem;}
+.xl{list-style:none;}
+.xl li{font-size:0.88rem;color:var(--text2);line-height:1.75;padding:0.45rem 0 0.45rem 1.4rem;position:relative;border-bottom:1px solid var(--border);}
+.xl li:last-child{border-bottom:none;}
+.xl li::before{content:'▸';position:absolute;left:0;color:var(--green);font-size:0.72rem;top:0.55rem;}
+
+/* EDUCATION */
+#education{background:var(--bg);}
+.ec{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;max-width:720px;}
+.ed{background:var(--surface);border:1px solid var(--border);border-radius:var(--rl);padding:2rem;transition:all 0.3s;position:relative;overflow:hidden;}
+.ed::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--purple));transform:scaleX(0);transform-origin:left;transition:transform 0.35s;}
+.ed:hover{border-color:var(--border2);transform:perspective(600px) rotateY(4deg) translateY(-5px);box-shadow:0 24px 48px rgba(0,0,0,0.45);}
+.ed:hover::after{transform:scaleX(1);}
+.et{display:inline-block;font-family:'Fira Code',monospace;font-size:0.68rem;color:var(--blue);background:var(--blue-dim);padding:0.22rem 0.6rem;border-radius:4px;margin-bottom:0.75rem;border:1px solid rgba(74,158,255,0.2);}
+.edg{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;margin-bottom:0.35rem;}
+.esc{font-size:0.8rem;color:var(--text3);margin-bottom:0.3rem;}
+.eyr{font-family:'Fira Code',monospace;font-size:0.72rem;color:var(--green);}
+
+/* CONTACT */
+#contact{background:var(--bg2);}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.ci p{color:var(--text2);font-size:0.92rem;line-height:1.85;margin-bottom:1rem;font-weight:300;}
+.cc-wrap{display:flex;flex-direction:column;gap:0.85rem;}
+.cc{display:flex;align-items:center;gap:1.1rem;padding:1.1rem 1.4rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);text-decoration:none;color:var(--text);transition:all 0.25s;position:relative;overflow:hidden;}
+.cc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;transform:scaleY(0);transform-origin:bottom;transition:transform 0.3s;}
+.cc:hover{background:var(--surface2);transform:translateX(5px);}
+.cc:hover::before{transform:scaleY(1);}
+.cc.em::before{background:var(--blue);}
+.cc.em:hover{border-color:rgba(74,158,255,0.3);}
+.cc.wa::before{background:var(--whatsapp);}
+.cc.wa:hover{border-color:rgba(37,211,102,0.3);}
+.cc.ph::before{background:var(--amber);}
+.cc.ph:hover{border-color:rgba(245,166,35,0.3);}
+.cc.lo::before{background:var(--purple);}
+.ccic{width:42px;height:42px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ccic svg{width:18px;height:18px;}
+.cc.em .ccic svg{color:var(--blue);}
+.cc.wa .ccic svg{color:var(--whatsapp);}
+.cc.ph .ccic svg{color:var(--amber);}
+.cc.lo .ccic svg{color:var(--purple);}
+.cclb{font-size:0.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.15rem;}
+.ccv{font-size:0.88rem;font-weight:500;}
+.ccar{margin-left:auto;color:var(--text3);transition:all 0.25s;}
+.cc:hover .ccar{color:var(--green);transform:translate(3px,-3px);}
+.ccar svg{width:15px;height:15px;}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:1.8rem 4rem;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;}
+.fl{font-family:'Fira Code',monospace;font-size:0.75rem;color:var(--text3);}
+.fl .g{color:var(--green);}
+.fl .p{color:var(--purple);}
+.fr{font-size:0.75rem;color:var(--text3);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.d1{transition-delay:0.08s;}.d2{transition-delay:0.16s;}.d3{transition-delay:0.24s;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  #hero{grid-template-columns:1fr;padding:90px 1.5rem 4rem;}
+  .term-wrap{display:none;}
+  nav{padding:0 1.5rem;}
+  .nav-links{display:none;}
+  .stats-inner{grid-template-columns:1fr 1fr;padding:1.8rem 1.5rem;}
+  .sw{padding:4rem 1.5rem;}
+  .ag{grid-template-columns:1fr;}
+  .sg{grid-template-columns:1fr 1fr;}
+  .ec{grid-template-columns:1fr;}
+  .cg{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:0.4rem;text-align:center;padding:1.5rem;}
+}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-brand">
+    <div class="nav-dot"></div>
+    <span class="nav-name">Rushma Dahal</span>
+    <span class="nav-badge">available</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero" style="background:var(--bg);">
+  <div>
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Open to work &nbsp;·&nbsp; Bhaktapur, Nepal
+    </div>
+    <h1 class="hero-name">
+      <div class="line1">Rushma</div>
+      <div class="line2">Dahal.</div>
+    </h1>
+    <p class="hero-role">
+      <span class="br">&lt;</span><span class="kw">WebDeveloper</span><span class="br">&gt;&nbsp;</span><span class="str">"Python · Django · JS"</span><span class="br">&nbsp;&lt;/&gt;</span>
+    </p>
+    <p class="hero-desc">Detail-oriented graduate and web developer skilled in Python (Django), HTML, CSS, and JavaScript. Passionate about building clean, functional web experiences and growing in a collaborative professional environment.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Get in touch
+      </a>
+      <a href="https://wa.me/9779849005710" target="_blank" class="btn-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+      <a href="mailto:dahalrushma38@gmail.com" class="btn-outline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email me
+      </a>
+    </div>
+  </div>
+
+  <!-- Terminal 3D card -->
+  <div class="term-wrap" id="termWrap">
+    <div class="term-card" id="termCard">
+      <div class="term-top">
+        <div class="td tr"></div><div class="td ty"></div><div class="td tg"></div>
+        <span class="tn">rushma.config.json</span>
+      </div>
+      <div class="term-body">
+        <div class="tl"><span style="color:var(--text3)">{</span></div>
+        <div class="ti">
+          <div class="tl"><span class="tk">"name"</span><span style="color:var(--text3)">:&nbsp;</span><span class="tv s">"Rushma Dahal"</span><span style="color:var(--text3)">,</span></div>
+          <div class="tl"><span class="tk">"title"</span><span style="color:var(--text3)">:&nbsp;</span><span class="tv s">"Web Developer"</span><span style="color:var(--text3)">,</span></div>
+          <div class="tl"><span class="tk">"location"</span><span style="color:var(--text3)">:&nbsp;</span><span class="tv s">"Bhaktapur, Nepal"</span><span style="color:var(--text3)">,</span></div>
+          <div class="tl"><span class="tk">"experience"</span><span style="color:var(--text3)">:&nbsp;</span><span class="tv n">"2+ years"</span><span style="color:var(--text3)">,</span></div>
+          <div class="tl"><span class="tk">"stack"</span><span style="color:var(--text3)">: [</span></div>
+          <div style="padding-left:1.1rem">
+            <div class="tl"><span class="tv s">"Python"</span><span style="color:var(--text3)">,&nbsp;</span><span class="tv s">"Django"</span><span style="color:var(--text3)">,</span></div>
+            <div class="tl"><span class="tv s">"JavaScript"</span><span style="color:var(--text3)">,</span></div>
+            <div class="tl"><span class="tv s">"HTML &amp; CSS"</span></div>
+          </div>
+          <div class="tl"><span style="color:var(--text3)">],</span></div>
+          <div class="tl"><span class="tk">"languages"</span><span style="color:var(--text3)">:&nbsp;</span><span class="tv" style="color:var(--text)">[</span><span class="tv s">"Nepali"</span><span style="color:var(--text3)">,</span><span class="tv s">"English"</span><span style="color:var(--text3)">,</span><span class="tv s">"Hindi"</span><span class="tv" style="color:var(--text)">]</span><span style="color:var(--text3)">,</span></div>
+          <div class="tl"><span class="tk">"openToWork"</span><span style="color:var(--text3)">:&nbsp;</span><span style="color:var(--green)">true</span></div>
+        </div>
+        <div class="tl"><span style="color:var(--text3)">}</span></div>
+        <div class="tl" style="margin-top:0.5rem;"><span class="cm">// let's build something great</span><span class="tcur"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="si reveal"><div class="sn">2+</div><div class="sd">Years experience</div></div>
+    <div class="si reveal d1"><div class="sn">6</div><div class="sd">Technologies</div></div>
+    <div class="si reveal d2"><div class="sn">3</div><div class="sd">Languages spoken</div></div>
+    <div class="si reveal d3"><div class="sn">100%</div><div class="sd">Committed to growth</div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sw">
+    <div class="ag reveal">
+      <div>
+        <p class="ey">About me</p>
+        <h2 class="st">Developer. Educator.<br><span>Problem Solver.</span></h2>
+        <div class="at">
+          <p>I'm a detail-oriented graduate and aspiring web developer based in Bhaktapur, Nepal. With hands-on experience in Python (Django), HTML, CSS, and JavaScript, I build functional and well-structured web applications.</p>
+          <p>For the past two years, I've worked as a home tutor — which has sharpened my ability to communicate complex ideas clearly, a skill that directly translates into writing readable code and collaborating in teams.</p>
+          <p>I'm actively looking for an entry-level developer or professional role where I can contribute meaningfully and continue growing my technical expertise in a real-world environment.</p>
+        </div>
+        <div class="ll">Languages</div>
+        <div class="lc">
+          <span class="lp">🇳🇵 Nepali — Native</span>
+          <span class="lp">🇬🇧 English — Fluent</span>
+          <span class="lp">🇮🇳 Hindi — Fluent</span>
+        </div>
+      </div>
+      <div>
+        <p class="ey" style="margin-top:3.5rem">Quick contact</p>
+        <div class="mini-contacts">
+          <a href="mailto:dahalrushma38@gmail.com" class="mc em">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span class="mc-txt">dahalrushma38@gmail.com</span>
+          </a>
+          <a href="tel:+9779849005710" class="mc ph">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.62 4.33 2 2 0 0 1 3.6 2.26h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span class="mc-txt">+977 9849005710</span>
+          </a>
+          <a href="https://wa.me/9779849005710" target="_blank" class="mc wa">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span class="mc-txt">WhatsApp — +977 9849005710</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sw">
+    <p class="ey reveal">Technical skills</p>
+    <h2 class="st reveal">Stack &amp; <span>Technologies</span></h2>
+    <div class="sg reveal">
+      <div class="sk"><div class="ski">📄</div><div class="skn">Microsoft Word</div><div class="skc">Documentation &amp; Reports</div><div class="skb"><div class="skf" data-w="90"></div></div><div class="skp">90%</div></div>
+      <div class="sk"><div class="ski">📊</div><div class="skn">Microsoft Excel</div><div class="skc">Data Management</div><div class="skb"><div class="skf" data-w="80"></div></div><div class="skp">80%</div></div>
+      <div class="sk"><div class="ski">📑</div><div class="skn">PowerPoint</div><div class="skc">Presentations</div><div class="skb"><div class="skf" data-w="85"></div></div><div class="skp">85%</div></div>
+      <div class="sk"><div class="ski">🐍</div><div class="skn">Python / Django</div><div class="skc">Backend Web Development</div><div class="skb"><div class="skf" data-w="65"></div></div><div class="skp">65%</div></div>
+      <div class="sk"><div class="ski">🌐</div><div class="skn">HTML &amp; CSS</div><div class="skc">Frontend Markup &amp; Styling</div><div class="skb"><div class="skf" data-w="75"></div></div><div class="skp">75%</div></div>
+      <div class="sk"><div class="ski">⚡</div><div class="skn">JavaScript</div><div class="skc">Dynamic Web Interactions</div><div class="skb"><div class="skf" data-w="60"></div></div><div class="skp">60%</div></div>
+    </div>
+    <div class="comp reveal">
+      <div class="compt">Core competencies</div>
+      <div class="comps">
+        <span class="compp">Professional Communication</span>
+        <span class="compp">Time Management</span>
+        <span class="compp">Team Collaboration</span>
+        <span class="compp">Analytical Thinking</span>
+        <span class="compp">Problem Solving</span>
+        <span class="compp">Work Under Pressure</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sw">
+    <p class="ey reveal">Experience</p>
+    <h2 class="st reveal">Work <span>History</span></h2>
+    <div class="xtl reveal">
+      <div class="xb">
+        <div class="xm">
+          <div class="xr">Home Tutor — Part Time</div>
+          <div class="xbg">2022 – Present</div>
+        </div>
+        <div class="xo">Self-Employed · Bhaktapur, Nepal · 2+ Years</div>
+        <ul class="xl">
+          <li>Provided structured academic support to school-level students across multiple subjects, resulting in measurable improvements in academic performance.</li>
+          <li>Designed and implemented customized learning plans tailored to each student's learning style and pace.</li>
+          <li>Maintained transparent and consistent communication with students and guardians to track progress and address concerns promptly.</li>
+          <li>Developed strong instructional, mentoring, and interpersonal skills through sustained one-on-one and small-group teaching.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="sw">
+    <p class="ey reveal">Education</p>
+    <h2 class="st reveal">Academic <span>Background</span></h2>
+    <div class="ec reveal">
+      <div class="ed">
+        <div class="et">+2 / Intermediate</div>
+        <div class="edg">Higher Secondary Education</div>
+        <div class="esc">Bagiswori Secondary School, Bhaktapur</div>
+        <div class="eyr">Completed 2024</div>
+      </div>
+      <div class="ed">
+        <div class="et">SLC / Secondary</div>
+        <div class="edg">School Leaving Certificate</div>
+        <div class="esc">Bagiswori Secondary School, Nepal</div>
+        <div class="eyr">Completed 2022</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sw">
+    <div class="cg">
+      <div class="reveal">
+        <p class="ey">Contact</p>
+        <h2 class="st">Let's work<br><span>together.</span></h2>
+        <div class="ci">
+          <p>I'm actively open to entry-level developer roles, internships, freelance projects, and any collaboration. Reach out through any channel — I respond promptly.</p>
+          <p>Every link below opens directly — email, call, or WhatsApp chat, no forms or waiting.</p>
+        </div>
+      </div>
+      <div class="cc-wrap reveal d1">
+        <!-- EMAIL — opens email client directly -->
+        <a href="mailto:dahalrushma38@gmail.com" class="cc em">
+          <div class="ccic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div><div class="cclb">Email</div><div class="ccv">dahalrushma38@gmail.com</div></div>
+          <div class="ccar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+        </a>
+
+        <!-- WHATSAPP — opens WhatsApp chat directly -->
+        <a href="https://wa.me/9779849005710" target="_blank" class="cc wa">
+          <div class="ccic">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <div><div class="cclb">WhatsApp</div><div class="ccv">+977 9849005710</div></div>
+          <div class="ccar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+        </a>
+
+        <!-- PHONE — opens phone dialer directly -->
+        <a href="tel:+9779849005710" class="cc ph">
+          <div class="ccic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.62 4.33 2 2 0 0 1 3.6 2.26h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div><div class="cclb">Phone</div><div class="ccv">+977 9849005710</div></div>
+          <div class="ccar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></div>
+        </a>
+
+        <!-- LOCATION — no link, just info -->
+        <div class="cc lo" style="cursor:default;">
+          <div class="ccic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div><div class="cclb">Location</div><div class="ccv">Suryabinayak-06, Bhaktapur, Nepal</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fl"><span class="g">rushma</span>.dahal <span style="color:var(--text3)">~</span> <span class="p">$</span> <span style="color:var(--text2)">echo</span> <span class="g">"ready to build"</span></div>
+  <div class="fr">© 2025 Rushma Dahal · Bhaktapur, Nepal</div>
+</footer>
+
+<script>
+// Scroll reveal
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+// Skill bars
+const skillSec = document.getElementById('skills');
+const so = new IntersectionObserver(entries => {
+  if(entries[0].isIntersecting) {
+    document.querySelectorAll('.skf').forEach((b,i) => {
+      setTimeout(() => { b.style.width = b.dataset.w + '%'; }, i * 110);
+    });
+    so.disconnect();
+  }
+}, {threshold: 0.25});
+so.observe(skillSec);
+
+// 3D tilt on terminal card
+const wrap = document.getElementById('termWrap');
+const card = document.getElementById('termCard');
+if(wrap && card) {
+  wrap.addEventListener('mousemove', e => {
+    const r = wrap.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width - 0.5) * 18;
+    const y = ((e.clientY - r.top) / r.height - 0.5) * -14;
+    card.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${y}deg) scale(1.015)`;
+  });
+  wrap.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(1000px) rotateY(-10deg) rotateX(5deg)';
+  });
+}
+
+// Nav on scroll
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.background =
+    window.scrollY > 50 ? 'rgba(10,12,16,0.97)' : 'rgba(10,12,16,0.82)';
+});
+</script>
+</body>
+</html>
